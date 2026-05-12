@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        El Oráculo de las Notas
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+
+        {% if not mostrar_preguntas %}
+
+        <h1>El Oráculo de las Notas</h1>
+
+        <p>
+            El sistema de evaluación está dividido
+            en 3 parciales.
+        </p>
+
+        <h2>Primer Parcial</h2>
+
+        <ul>
+            <li>Evidencia de conocimiento: 40%</li>
+            <li>Evidencia de desempeño: 20%</li>
+            <li>Evidencia de producto: 30%</li>
+            <li>Proyecto integrador: 10%</li>
+        </ul>
+
+        <h2>Segundo Parcial</h2>
+
+        <ul>
+            <li>Evidencia de conocimiento: 40%</li>
+            <li>Evidencia de desempeño: 20%</li>
+            <li>Evidencia de producto: 30%</li>
+            <li>Proyecto integrador: 10%</li>
+        </ul>
+
+        <h2>Tercer Parcial</h2>
+
+        <ul>
+            <li>Evidencia de conocimiento: 10%</li>
+            <li>Evidencia de desempeño: 10%</li>
+            <li>Evidencia de producto: 30%</li>
+            <li>Proyecto integrador: 50%</li>
+        </ul>
+
+        <p>
+            Solo los estudiantes preparados
+            podrán superar el sistema.
+        </p>
+
+        <form method="POST">
+
+            <input type="hidden"
+                   name="accion"
+                   value="mostrar">
+
+            <button type="submit">
+                CONTINUAR
+            </button>
+
+        </form>
+
+        {% endif %}
+
+
+        {% if mostrar_preguntas %}
+
+        <div class="desafio-card">
+
+            <h2>SISTEMA ACTIVADO</h2>
+
+            <p>
+                El Oráculo pondrá a prueba
+                tus conocimientos.
+            </p>
+
+            <p>
+                Solo quienes recuerden
+                el sistema de evaluación
+                podrán avanzar.
+            </p>
+
+        </div>
+
+
+        <form method="POST">
+
+            <input type="hidden"
+                   name="accion"
+                   value="validar">
+
+            <h2>Pregunta 1</h2>
+
+            <p>
+                ¿Cuánto vale el proyecto integrador
+                en el tercer parcial?
+            </p>
+
+            <input type="radio"
+                   name="p1"
+                   value="30%">
+
+            30%
+            <br>
+
+            <input type="radio"
+                   name="p1"
+                   value="40%">
+
+            40%
+            <br>
+
+            <input type="radio"
+                   name="p1"
+                   value="50%">
+
+            50%
+
+            <br><br>
+
+            <h2>Pregunta 2</h2>
+
+            <p>
+                ¿Cuánto vale la evidencia de desempeño
+                en el primer parcial?
+            </p>
+
+            <input type="radio"
+                   name="p2"
+                   value="10%">
+
+            10%
+            <br>
+
+            <input type="radio"
+                   name="p2"
+                   value="20%">
+
+            20%
+            <br>
+
+            <input type="radio"
+                   name="p2"
+                   value="30%">
+
+            30%
+
+            <br><br>
+
+            <input type="checkbox"
+                   name="compromiso">
+
+            Acepto continuar la aventura.
+
+            <br><br>
+
+            <button type="submit">
+                DESBLOQUEAR NIVEL
+            </button>
+
+        </form>
+
+        {% if error %}
+
+        <div class="mensaje-card">
+
+            <h2>
+                {{ error }}
+            </h2>
+
+            <p class="estado">
+                Intentos fallidos:
+                {{ intentos }}/4
+            </p>
+
+        </div>
+
+        {% endif %}
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

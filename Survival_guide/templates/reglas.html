@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>
+        La Cámara de las Reglas
+    </title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+
+        {% if not mostrar_preguntas %}
+
+        <h1>La Cámara de las Reglas</h1>
+
+        <p>
+            Antes de continuar tu aventura,
+            deberás conocer las reglas del sistema.
+        </p>
+
+        <ul>
+            <li>80% de asistencia obligatoria</li>
+            <li>10 minutos de tolerancia</li>
+            <li>Prohibido el plagio</li>
+            <li>Prohibido comer en el aula</li>
+            <li>Respeto obligatorio dentro del aula</li>
+            <li>Las faltas deberan ser justificadas</li>
+        </ul>
+
+        <form method="POST">
+
+            <input type="hidden"
+                   name="accion"
+                   value="mostrar">
+
+            <button type="submit">
+                CONTINUAR
+            </button>
+
+        </form>
+
+        {% endif %}
+
+
+        {% if mostrar_preguntas %}
+
+        <div class="desafio-card">
+
+            <h2>SISTEMA ACTIVADO</h2>
+
+            <p>
+                ¿Creíste que sería tan fácil?
+            </p>
+
+            <p>
+                Ahora deberás demostrar
+                lo que aprendiste.
+            </p>
+
+        </div>
+
+
+        <form method="POST">
+
+            <input type="hidden"
+                   name="accion"
+                   value="validar">
+
+            <h2>Pregunta 1</h2>
+
+            <p>
+                ¿Cuál es el porcentaje mínimo de asistencia?
+            </p>
+
+            <input type="radio"
+                   name="p1"
+                   value="60%">
+
+            60%
+            <br>
+
+            <input type="radio"
+                   name="p1"
+                   value="70%">
+
+            70%
+            <br>
+
+            <input type="radio"
+                   name="p1"
+                   value="80%">
+
+            80%
+            <br>
+
+            <h2>Pregunta 2</h2>
+
+            <p>
+                ¿Qué puede pasar si existe plagio?
+            </p>
+
+            <input type="radio"
+                   name="p2"
+                   value="advertencia">
+
+            Advertencia
+            <br>
+
+            <input type="radio"
+                   name="p2"
+                   value="reprobar">
+
+            Reprobar la asignatura
+            <br>
+
+            <input type="radio"
+                   name="p2"
+                   value="nada">
+
+            Nada
+
+            <br><br>
+
+            <input type="checkbox"
+                   name="compromiso">
+
+            Acepto respetar el reglamento.
+
+            <br><br>
+
+            <button type="submit">
+                DESBLOQUEAR NIVEL
+            </button>
+
+        </form>
+
+        {% if error %}
+
+        <div class="mensaje-card">
+
+            <h2>
+                {{ error }}
+            </h2>
+
+            <p class="estado">
+                Intentos fallidos:
+                {{ intentos }}/4
+            </p>
+
+        </div>
+
+        {% endif %}
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

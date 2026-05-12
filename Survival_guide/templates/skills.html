@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Skills a Desbloquear</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        {% if not mostrar_preguntas %}
+
+        <h1>Skills a Desbloquear</h1>
+
+        <p>
+            Desarrollará aplicaciones móviles
+            mediante lenguajes de programación
+            y herramientas móviles.
+        </p>
+
+        <p>
+            Competencia:
+            crear soluciones tecnológicas multiplataforma.
+        </p>
+
+        <h2>Temario</h2>
+
+        <ul>
+            <li>Introducción al desarrollo móvil</li>
+            <li>Diseño de aplicaciones móviles</li>
+            <li>Programación móvil</li>
+            <li>Publicación de aplicaciones</li>
+        </ul>
+
+        <form method="POST">
+
+            <input type="hidden"
+                   name="accion"
+                   value="mostrar">
+
+            <button type="submit">
+                CONTINUAR
+            </button>
+
+        </form>
+
+        {% endif %}
+
+        {% if mostrar_preguntas %}
+
+        <div class="desafio-card">
+
+            <h2>SISTEMA ACTIVADO</h2>
+
+            <p>
+                Las skills no se desbloquean gratis.
+            </p>
+
+            <p>
+                Demuestra que eres digno
+                de continuar.
+            </p>
+
+        </div>
+
+        <form method="POST">
+
+            <input type="hidden"
+                   name="accion"
+                   value="validar">
+
+            <h2>Pregunta 1</h2>
+
+            <p>
+                ¿Qué desarrollará el estudiante?
+            </p>
+
+            <input type="radio"
+                   name="p1"
+                   value="videojuegos">
+
+            Videojuegos
+            <br>
+
+            <input type="radio"
+                   name="p1"
+                   value="apps">
+
+            Aplicaciones móviles
+            <br>
+
+            <input type="radio"
+                   name="p1"
+                   value="robots">
+
+            Robots
+            <br>
+
+            <h2>Pregunta 2</h2>
+
+            <p>
+                ¿Qué tipo de soluciones creará?
+            </p>
+
+            <input type="radio"
+                   name="p2"
+                   value="multiplataforma">
+
+            Multiplataforma
+            <br>
+
+            <input type="radio"
+                   name="p2"
+                   value="manuales">
+
+            Manuales
+            <br>
+
+            <input type="radio"
+                   name="p2"
+                   value="mecanicas">
+
+            Mecánicas
+            <br><br>
+
+            <input type="checkbox"
+                   name="compromiso">
+
+            Acepto continuar entrenando mis skills.
+
+            <br><br>
+
+            <button type="submit">
+                DESBLOQUEAR NIVEL
+            </button>
+
+        </form>
+
+        {% endif %}
+
+        {% if error %}
+
+        <div class="mensaje-card">
+
+            <h2>{{ error }}</h2>
+
+            <p class="estado">
+                Intentos fallidos:
+                {{ intentos }}/4
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+</body>
+</html>

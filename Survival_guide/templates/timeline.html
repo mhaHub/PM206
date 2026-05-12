@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Línea del Tiempo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Línea del Tiempo</h1>
+
+        <ul>
+            <li>1er Parcial: 02-06-26</li>
+            <li>2do Parcial: 07-07-26</li>
+            <li>3er Parcial: 11-08-26</li>
+            <li>Final: 17-08-26</li>
+        </ul>
+
+        <div class="desafio-card">
+
+            <h2>MISIÓN COMPLETADA</h2>
+
+            <p>
+                Has sobrevivido a Programación Móvil.
+            </p>
+
+            <p>
+                El sistema reconoce tu esfuerzo pero ¿Seguiras sobreviviendo?.
+            </p>
+
+        </div>
+
+        <br>
+
+        <a href="{{ url_for('reiniciar') }}">
+
+            <button>
+                REINICIAR AVENTURA
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

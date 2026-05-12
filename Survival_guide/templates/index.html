@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Survival Guide</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>Survival Guide: El Reto Móvil</h1>
+
+        <p>
+            Bienvenido estudiante.
+        </p>
+
+        <p>
+            Tu misión es sobrevivir a Programación Móvil.
+        </p>
+
+        <p>
+            Supera cada nivel para avanzar en el cuatrimestre o si no "Nos vemos en final >:)".
+        </p>
+
+        <a href="{{ url_for('reglas') }}">
+            <button>INICIAR AVENTURA</button>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
