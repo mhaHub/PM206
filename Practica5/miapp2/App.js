@@ -11,23 +11,20 @@ export default function App() {
   return (
     <View style={styles.container}>
 
-      <Image source={require('./assets/wave.png')}/>
+      
 
-      <Text> Hola mundo RN! </Text>
+      <Perfil nombre="Diego Rivera Diaz" carrera="Sistemas" materia="P Movil" cuatri="9"></Perfil>
 
-      <Text> -------------Componente Simple------------------ </Text>
+      <Text>---------------------------------------------------</Text>
 
-      <Saludo></Saludo>
+      <Text>---------------------------------------------------</Text>
 
-      <Text> ---------------Componente Compuesto---------------- </Text>
-
-      <Saludo2></Saludo2>
-
-      <Text> ---------------Componente Perfil---------------- </Text>
-
-      <Perfil></Perfil>
-
-
+      <Perfil 
+      nombre="Frosty" 
+      carrera="Musica" 
+      materia="Notas" 
+      cuatri="egresado">
+      </Perfil>
 
 
       <StatusBar style="auto" />
