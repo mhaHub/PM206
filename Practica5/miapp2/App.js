@@ -13,18 +13,21 @@ export default function App() {
 
       
 
-      <Perfil nombre="Diego Rivera Diaz" carrera="Sistemas" materia="P Movil" cuatri="9"></Perfil>
+      <Perfil style={styles.tarjetaRoja} nombre="Diego Rivera Diaz" carrera="Sistemas" materia="P Movil" cuatri="9"></Perfil>
 
       <Text>---------------------------------------------------</Text>
 
       <Text>---------------------------------------------------</Text>
 
       <Perfil 
+      style={styles.tarjetaVerde}
       nombre="Frosty" 
       carrera="Musica" 
       materia="Notas" 
       cuatri="egresado">
       </Perfil>
+
+      <Perfil style={styles.tarjetaRoja} nombre="Jack" carrera="Sistemas" materia="P Movil" cuatri="9"></Perfil>
 
 
       <StatusBar style="auto" />
@@ -39,6 +42,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    flexDirection: 'center'
+  },
+  
+  tarjetaRoja: {
+    backgroundColor: '#FF6B6B'
+  },
+  tarjetaVerde: {
+    backgroundColor: '#6BCB77'
   },
 });
