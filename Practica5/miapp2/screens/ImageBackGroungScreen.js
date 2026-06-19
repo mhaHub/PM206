@@ -2,13 +2,12 @@
 /*Zona1: Importaciones de componentes y archivos*/
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import MenuScreen from './screens/MenuScreen';
 
-export default function App() {
+export default function ImageBackGroungScreen() {
   return (
     <View style={styles.container}>
-      
-      <MenuScreen/>
+
+        <Text> Aqui va mi practica </Text>
 
       <StatusBar style="auto" />
 
