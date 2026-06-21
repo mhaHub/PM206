@@ -1,27 +1,90 @@
+import React, { useState, useEffect} from 'react';
 
-/*Zona1: Importaciones de componentes y archivos*/
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground
+} from 'react-native';
 
 export default function ImageBackGroungScreen() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading){
+    return(
+      <View style={styles.splash}>
+        <Text style={styles.splashText}>
+          Cargando aplicación....
+        </Text>
+      </View>
+    );
+  }
+
+  
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      source={{
+        uri: 'https://picsum.photos/500/900'
+      }}
+      style={styles.background}
+      resizeMode="cover"
+    >
+      <View style={styles.overlay}>
+        <Text style={styles.titulo}>
+          Bienvenido a React Native
+        </Text>
 
-        <Text> Aqui va mi practica </Text>
-
-      <StatusBar style="auto" />
-
-    </View>
+        <Text style={styles.subtitulo}>
+          Ejemplo de ImageBackground
+        </Text>
+      </View>
+    </ImageBackground>
   );
 }
 
-/*Zona3: Estilos y posicionamientos*/
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
+    width: '100%'
   },
+
+  overlay: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.3)'
+  },
+
+  titulo: {
+    fontSize: 28,
+    color: '#ffffff',
+    fontWeight: 'bold',
+    marginBottom: 10
+  },
+
+  subtitulo: {
+    fontSize: 18,
+    color: '#ffffff'
+  },
+
+  splash: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#ffffff'
+  },
+
+  splashText: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  }
 });
