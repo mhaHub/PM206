@@ -1,3 +1,5 @@
+//SafeAreaView y ScrollView
+
 
 /*Zona1: Importaciones de componentes y archivos*/
 import { StatusBar } from 'expo-status-bar';
