@@ -1,27 +1,101 @@
+// Zona 1: Importaciones de componentes y archivos
+import { StatusBar } from "expo-status-bar";
+import { Pressable, View, Text, StyleSheet, Switch } from "react-native";
+import { useState } from "react";
 
-/*Zona1: Importaciones de componentes y archivos*/
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+export default function PressableSwitchScreen() {
 
-export default function PressableScreen() {
+  const [buttonText, setButtonText] = useState("Dame clic");
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: isDarkMode ? "#000000" : "#ffffff"
+        }
+      ]}
+    >
+      <StatusBar style={isDarkMode ? "light" : "dark"} />
 
-        <Text> Aqui va la practica de Miguel Adrian </Text>
+      <Pressable
+        style={styles.button}
+        onPress={() => {
+          console.log("Se presionó el botón");
+          setButtonText("Botón presionado");
+        }}
+        onPressIn={() => {
+          console.log("Se acaba de presionar el botón");
+        }}
+        onPressOut={() => {
+          console.log("Se acaba de soltar el botón");
+        }}
+        onLongPress={() => {
+          console.log("Presión larga detectada");
+        }}
+      >
+        <Text style={styles.buttonText}>
+          {buttonText}
+        </Text>
+      </Pressable>
 
-      <StatusBar style="auto" />
+      <View style={styles.switchContainer}>
+        <Text
+          style={[
+            styles.text,
+            {
+              color: isDarkMode ? "#ffffff" : "#000000"
+            }
+          ]}
+        >
+          Modo oscuro
+        </Text>
+
+        <Switch
+          value={isDarkMode}
+          onValueChange={() => setIsDarkMode(!isDarkMode)}
+          trackColor={{ false: "#767577", true: "blue" }}
+          thumbColor="#f4f3f4"
+        />
+      </View>
 
     </View>
   );
 }
 
-/*Zona3: Estilos y posicionamientos*/
+// Zona 2: Estilos y posicionamiento
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column'
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20
   },
+
+  button: {
+    backgroundColor: "blue",
+    padding: 20,
+    borderRadius: 10,
+    marginBottom: 50
+  },
+
+  buttonText: {
+    fontSize: 20,
+    color: "white",
+    textAlign: "center"
+  },
+
+  switchContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "80%",
+    paddingHorizontal: 10
+  },
+
+  text: {
+    fontSize: 18,
+    fontWeight: "bold"
+  }
 });
