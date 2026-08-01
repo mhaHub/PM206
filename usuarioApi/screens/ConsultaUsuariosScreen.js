@@ -1,27 +1,38 @@
-import React,{useState, useEffect} from 'react';
-import {SafeAreaView,View,Text,FlatList,StyleSheet,} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { SafeAreaView, View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { useRouter, useFocusEffect } from 'expo-router'; 
 
 export default function ConsultaUsuariosScreen() {
 
   const [usuarios, setUsuarios] = useState([]);
 
-  const obtenerUsuarios = async ()=>{
-    try{
-      const respuesta = await fetch('http://192.168.100.95:5000/v1/usuarios');
+  const router = useRouter();
+
+  const obtenerUsuarios = async () => {
+    try {
+      const respuesta = await fetch('http://10.117.254.172:5000/v1/usuarios');
       const datos = await respuesta.json();
       console.log("Respuesta API: ", datos);
       setUsuarios(datos.usuarios)
-    }catch(error){
+    } catch (error) {
       console.log("Error API: ", error);
     }
   };
 
-  useEffect(() => {obtenerUsuarios();},[])
+  useFocusEffect(
+    React.useCallback(() => {
+      obtenerUsuarios();
+    }, [])
+  );
+
+  useEffect(() => { obtenerUsuarios(); }, [])
 
   const renderTarjeta = ({ item }) => (
     <View style={styles.card}>
 
-      <Text style={styles.nombre}>{item.nombre}</Text>
+      <Text style={styles.nombre}>
+        {item.nombre}
+      </Text>
 
       <View style={styles.linea}></View>
 
@@ -29,6 +40,21 @@ export default function ConsultaUsuariosScreen() {
         Edad: {item.edad} años
       </Text>
 
+      <TouchableOpacity
+        style={styles.detalle}
+        onPress={() =>
+          router.push({
+            pathname: '/detalle',
+            params: {
+              usuario: JSON.stringify(item),
+            },
+          })
+        }
+      >
+        <Text style={styles.textoDetalle}>
+          Ver detalle →
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 
@@ -50,7 +76,7 @@ export default function ConsultaUsuariosScreen() {
 
     </SafeAreaView>
   );
-  
+
 }
 
 const styles = StyleSheet.create({
@@ -102,4 +128,14 @@ const styles = StyleSheet.create({
     color: '#4B5563',
   },
 
+  detalle: {
+    alignSelf: 'flex-end',
+    marginTop: 12,
+  },
+
+  textoDetalle: {
+    color: '#2563EB',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
 });

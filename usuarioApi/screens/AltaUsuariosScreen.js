@@ -22,7 +22,7 @@ export default function App() {
 
     try{
       setCargando(true)
-      const respuesta = await fetch('http://192.168.100.95:5000/v1/usuarios',
+      const respuesta = await fetch('http://10.117.254.172:5000/v1/usuarios',
         {
           method:"POST",
           headers:{"Content-type": "application/json"},
