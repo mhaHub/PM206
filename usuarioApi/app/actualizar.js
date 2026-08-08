@@ -12,6 +12,24 @@ import {
 
 import { useLocalSearchParams, useRouter } from 'expo-router';
 
+// Base64 compatible con React Native/Hermes (no existe btoa)
+const encodeBase64 = (str) => {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+  let output = '';
+  const bytes = [];
+  for (let i = 0; i < str.length; i++) bytes.push(str.charCodeAt(i));
+  for (let i = 0; i < bytes.length; i += 3) {
+    const b1 = bytes[i];
+    const b2 = bytes[i + 1];
+    const b3 = bytes[i + 2];
+    output += chars[b1 >> 2];
+    output += chars[((b1 & 3) << 4) | (b2 >> 4)];
+    output += b2 === undefined ? '=' : chars[((b2 & 15) << 2) | (b3 >> 6)];
+    output += b3 === undefined ? '=' : chars[b3 & 63];
+  }
+  return output;
+};
+
 export default function ActualizarUsuario() {
 
   const { usuario } = useLocalSearchParams();
@@ -45,12 +63,12 @@ export default function ActualizarUsuario() {
       setCargando(true);
 
       const respuesta = await fetch(
-        `http://10.117.254.172:5000/v1/usuarios/${datosUsuario.id}`,
+        `http://192.168.100.95:5000/v1/usuarios/${datosUsuario.id}`,
         {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Basic ' + btoa('admin:1234'),
+            'Authorization': 'Basic ' + encodeBase64('admin:1234'),
           },
           body: JSON.stringify({
             nombre: nombre,

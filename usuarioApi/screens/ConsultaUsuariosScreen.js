@@ -8,9 +8,9 @@ export default function ConsultaUsuariosScreen() {
 
   const router = useRouter();
 
-  const obtenerUsuarios = async () => {
+  const obtenerUsuarios = async () => { 
     try {
-      const respuesta = await fetch('http://10.117.254.172:5000/v1/usuarios');
+      const respuesta = await fetch('http://192.168.100.95:5000/v1/usuarios');
       const datos = await respuesta.json();
       console.log("Respuesta API: ", datos);
       setUsuarios(datos.usuarios)
